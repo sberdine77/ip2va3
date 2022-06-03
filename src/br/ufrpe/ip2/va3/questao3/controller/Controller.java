@@ -16,11 +16,11 @@ import br.ufrpe.ip2.va3.questao3.model.User;
 import br.ufrpe.ip2.va3.questao3.repository.GenericRepository;
 
 public class Controller {
-    private GenericRepository<User> users;
-    private GenericRepository<Store> stores;
-    private GenericRepository<Product> products;
-    private GenericRepository<PriceAlert> priceAlerts;
-    private GenericRepository<ProductSale> productSales;
+    private GenericRepository<User> users = new GenericRepository<User>("users.dat");
+    private GenericRepository<Store> stores = new GenericRepository<Store>("stores.dat");
+    private GenericRepository<Product> products = new GenericRepository<Product>("products.dat");
+    private GenericRepository<PriceAlert> priceAlerts = new GenericRepository<PriceAlert>("priceAlerts.dat");
+    private GenericRepository<ProductSale> productSales = new GenericRepository<ProductSale>("productSales.dat");
 
     public List<ProductSale> listSalesOrderedByPriceOnDate (Product product, LocalDate currentDate) {
         ArrayList<ProductSale> sales = this.getProductSales();
