@@ -4,11 +4,10 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import br.ufrpe.ip2.va3.questao3.view.HelperViews.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #FFFFFF;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.ip2.va3.questao3.view.InsertProductSaleView.InsertProductSaleViewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.ufrpe.ip2.va3.questao3.view.InsertProductSaleView.InsertProductSaleViewController">
    <children>
       <Label fx:id="storeSelectionLabel" layoutX="14.0" layoutY="45.0" text="Selecione uma loja" />
       <Label fx:id="titleLabel" layoutX="227.0" layoutY="14.0" text="Crie uma oferta de produto" />
@@ -19,7 +18,7 @@
       <Label fx:id="dateLabel" layoutX="14.0" layoutY="173.0" text="Data" />
       <DatePicker fx:id="datePicker" layoutX="14.0" layoutY="200.0" />
       <Label fx:id="priceLabel" layoutX="14.0" layoutY="237.0" text="Preço" />
-      <TextField fx:id="priceTextField" layoutX="14.0" layoutY="262.0" />
-      <Button fx:id="createButton" layoutX="278.0" layoutY="322.0" mnemonicParsing="false" text="Criar" />
+      <NumberTextField fx:id="priceTextField" layoutX="14.0" layoutY="262.0" />
+      <Button fx:id="createButton" layoutX="278.0" layoutY="322.0" mnemonicParsing="false" onAction="#createAction" text="Criar" />
    </children>
 </AnchorPane>
