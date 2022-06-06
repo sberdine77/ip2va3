@@ -8,6 +8,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.time.chrono.JapaneseChronology;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.UUID;
 import java.util.stream.Collectors;
@@ -21,14 +22,19 @@ import br.ufrpe.ip2.va3.questao3.view.ListProductSalesView.ListProductSalesViewC
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventType;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
 import javafx.util.StringConverter;
 import javafx.scene.Node;
@@ -131,17 +137,32 @@ public class InsertProductSaleViewController {
             try {
                 this.controller.addProductSale(newSale);
                 System.out.println("Oferta cadastrada com sucesso");
+                createAnAlert(AlertType.INFORMATION, "Sucesso", null, "Oferta criada com sucesso!");
             } catch (Exception e) {
                 System.out.println("Não foi possível cadastrar oferta");
                 e.printStackTrace();
+                this.createAnAlert(AlertType.ERROR, "Erro", "Não foi possível criar a sua oferta", e.getMessage());
             }
         } else {
             System.out.println("Preencha todos os campos para cadastrar uma oferta");
+            this.createAnAlert(AlertType.ERROR, "Erro", null, "Preencha todos os campos para cadastrar uma oferta");
         }
+    }
+
+    void createAnAlert(AlertType type, String alertTitle, String alertHeader, String alertMessage) {
+        Alert alert = new Alert(type);
+        alert.setTitle(alertTitle);
+        alert.setHeaderText(alertHeader);
+        alert.setContentText(alertMessage);
+        alert.showAndWait();
     }
 
     @FXML
     void backAction(ActionEvent event) throws Exception {
+        backToListView(event);
+    }
+
+    void backToListView(Event event) throws Exception {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../view/ListProductSalesView/ListProductSalesView.fxml"));
         this.root = fxmlLoader.load();
         stage = (Stage)((Node)event.getSource()).getScene().getWindow();

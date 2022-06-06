@@ -22,10 +22,29 @@ public class Controller {
     private GenericRepository<PriceAlert> priceAlerts = new GenericRepository<PriceAlert>("priceAlerts.dat");
     private GenericRepository<ProductSale> productSales = new GenericRepository<ProductSale>("productSales.dat");
 
-    public List<ProductSale> listSalesOrderedByPriceOnDate (Product product, LocalDate currentDate) {
+    public List<ProductSale> listSalesOfProductOrderedByPriceOnDate (Product product, LocalDate currentDate) {
         ArrayList<ProductSale> sales = this.getProductSales();
         List<ProductSale> salesList = sales.stream().filter(s -> s.getProduct().equals(product) && s.getDate().equals(currentDate)).collect(Collectors.toList());
-        Collections.sort(salesList, (s1, s2) -> s1.getDate().compareTo(s2.getDate()));
+        Collections.sort(salesList, (s1, s2) -> {
+            if(s1.getPrice() >= s2.getPrice()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        });
+        return salesList;
+    }
+
+    public List<ProductSale> listSalesOrderedByPriceOnDate (LocalDate currentDate) {
+        ArrayList<ProductSale> sales = this.getProductSales();
+        List<ProductSale> salesList = sales.stream().filter(s -> s.getDate().equals(currentDate)).collect(Collectors.toList());
+        Collections.sort(salesList, (s1, s2) -> {
+            if(s1.getPrice() >= s2.getPrice()) {
+                return 1;
+            } else {
+                return -1;
+            }
+        });
         return salesList;
     }
 
@@ -46,7 +65,7 @@ public class Controller {
     public List<PriceAlert> verifyMatchedPriceAlertForUser(User user) {
         List<PriceAlert> alertsForUser = this.getPriceAlerts().stream().filter(pA -> pA.getUser().equals(user)).collect(Collectors.toList());
         alertsForUser = alertsForUser.stream().filter(pA -> {
-            List<ProductSale> salesForProduct = this.listSalesOrderedByPriceOnDate(pA.getProduct(), LocalDate.now());
+            List<ProductSale> salesForProduct = this.listSalesOfProductOrderedByPriceOnDate(pA.getProduct(), LocalDate.now());
             for (ProductSale sale : salesForProduct) {
                 if(pA.getPrice() >= sale.getPrice()) {
                     return true;
