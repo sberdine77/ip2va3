@@ -35,5 +35,4 @@ public class Store extends RepositoryItem {
             return false;
         }
     }
-
 }

@@ -37,7 +37,6 @@ public class Product extends RepositoryItem {
         this.category = category;
     }
 
-
     @Override
     public boolean equals(Object item) {
         if(item instanceof Product) {
