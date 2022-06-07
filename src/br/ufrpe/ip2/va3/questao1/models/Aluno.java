@@ -30,4 +30,13 @@ public class Aluno extends Pessoa {
         this.curso = curso;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Aluno) {
+            Aluno castedAluno = (Aluno) obj;
+            return this.getDataNascimento().equals(castedAluno.getDataNascimento()) && this.getMatricula() == castedAluno.getMatricula();
+        } else {
+            return false;
+        }
+    }
 }

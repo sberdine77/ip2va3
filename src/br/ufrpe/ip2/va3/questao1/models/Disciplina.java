@@ -67,4 +67,13 @@ public class Disciplina {
         this.curso = curso;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Disciplina) {
+            Disciplina castedDisciplina = (Disciplina) obj;
+            return this.getDescricao().equals(castedDisciplina.getDescricao()) && this.getCodigo() == castedDisciplina.getCodigo();
+        } else {
+            return false;
+        }
+    }
 }

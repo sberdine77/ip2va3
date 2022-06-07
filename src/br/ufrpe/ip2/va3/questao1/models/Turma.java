@@ -85,4 +85,14 @@ public class Turma {
         this.professorResponsavel = professorResponsavel;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Turma) {
+            Turma castedTurma = (Turma) obj;
+            return this.getSemestre() == castedTurma.getSemestre() && this.getDisciplina().equals(castedTurma.getDisciplina());
+        } else {
+            return false;
+        }
+    }
+
 }

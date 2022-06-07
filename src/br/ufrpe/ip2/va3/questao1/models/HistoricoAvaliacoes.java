@@ -76,4 +76,13 @@ public class HistoricoAvaliacoes {
         return result;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof HistoricoAvaliacoes) {
+            HistoricoAvaliacoes castedHistoricoAvaliacoes = (HistoricoAvaliacoes) obj;
+            return this.getAluno().equals(castedHistoricoAvaliacoes.getAluno()) && this.getAverage() == castedHistoricoAvaliacoes.getAverage();
+        } else {
+            return false;
+        }
+    }
 }

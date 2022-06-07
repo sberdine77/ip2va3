@@ -48,5 +48,14 @@ public abstract class Pessoa {
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-
+    
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Pessoa) {
+            Pessoa castedPessoa = (Pessoa) obj;
+            return this.getDataNascimento().equals(castedPessoa.getDataNascimento()) && this.getNome().equals(castedPessoa.getNome());
+        } else {
+            return false;
+        }
+    }
 }

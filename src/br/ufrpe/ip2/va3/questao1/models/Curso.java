@@ -29,4 +29,13 @@ public class Curso {
         this.coordenador = coordenador;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Curso) {
+            Curso castedCurso = (Curso) obj;
+            return this.getCodigo() == castedCurso.getCodigo();
+        } else {
+            return false;
+        }
+    }
 }

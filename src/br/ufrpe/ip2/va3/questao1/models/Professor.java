@@ -20,4 +20,13 @@ public class Professor extends Pessoa {
         this.titulacaoMaxima = titulacaoMaxima;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Professor) {
+            Professor castedProffessor = (Professor) obj;
+            return this.getDataNascimento().equals(castedProffessor.getDataNascimento()) && this.getTelefone().equals(castedProffessor.getTelefone());
+        } else {
+            return false;
+        }
+    }
 }

@@ -79,7 +79,6 @@ public class ListProductSalesViewController {
             controller.initWithData(this.controller);
             stage.show();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }

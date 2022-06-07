@@ -54,4 +54,13 @@ public class Avaliacao {
         this.nota = nota;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if(obj instanceof Avaliacao) {
+            Avaliacao castedAvaliacao = (Avaliacao) obj;
+            return this.getAlunoRealizador().equals(castedAvaliacao.getAlunoRealizador()) && this.getTurma().equals(castedAvaliacao.getTurma());
+        } else {
+            return false;
+        }
+    }
 }
